@@ -1,0 +1,8 @@
+# This umbrella repo holds only the landing README. The application lives in
+# its own repositories (valuate-web, valuate-api), checked out here locally
+# for convenience but never committed into this repo.
+valuate-api/
+valuate-web/
+.venv/
+.claude/
+.DS_Store
