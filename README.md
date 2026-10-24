@@ -17,6 +17,8 @@ SEC XBRL company facts provide the first extraction path. Claude fills gaps from
 
 Automated checks flag extraction scores below 0.80 and balance-sheet discrepancies above 0.5%. Scores are heuristics, not calibrated probabilities of correctness. No flags does not mean a person verified the figures. Reviewers can replace flagged values, choose a specific line for a balance-sheet reconciliation, and optionally add an excerpt. Checks run again after saving. Corrections retain the current value and source label, without reviewer identity or chronological edit history.
 
+Balance-sheet reconciliation keeps parent shareholders' equity and noncontrolling interests separate, adds them when required, and avoids double-counting equity already tagged as consolidated. Prologis's missing component can be backfilled from the same annual filing while preserving its existing amounts, correction notes, and valuation. Unknown equity coverage or unavailable source facts still require review.
+
 ## Valuation models
 
 | Category | Simplified model |
