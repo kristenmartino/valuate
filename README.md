@@ -27,6 +27,8 @@ Automated checks flag extraction scores below 0.80 and balance-sheet discrepanci
 | REIT | Gordon growth using approximate FFO: net income plus D&A |
 | Energy | Fixed ten-year FCFF projection without terminal value |
 
+Berkshire (`BRK.B` / `BRK-B`, also Class A) uses the simplified justified-P/B formula with consolidated GAAP earnings and Berkshire shareholders' equity, not a sum-of-the-parts valuation. The annual filing supplies class-specific average equivalent shares and dimensioned premiums/cash; the workspace discloses that share basis. Investment gains can distort ROE, and average shares differ from year-end shares.
+
 Energy growth changes projected revenue. The model does not estimate company-specific reserve life, production volumes, or commodity prices. The REIT calculations are simplified estimates, not company-reported FFO/AFFO. Unclassified companies fall back to standard DCF, which may not fit their business.
 
 Monte Carlo output is a distribution under sampled assumptions, not a calibrated stock-price forecast. The chart defaults to values between the 10th and 90th percentiles, discloses the counts outside that window, and offers the full range. Summary statistics use all completed simulations. Sensitivity grids and DCF-implied multiples appear for standard and energy models. Bank, insurer, and REIT comps tables show market context without a model-implied row.
