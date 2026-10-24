@@ -1,47 +1,38 @@
-# Valuate — Live AI-augmented SEC 10-K valuation workspace
+# Valuate — SEC filing valuation workspace
 
-Valuate is a live, deployed AI-augmented valuation workspace that ingests SEC 10-K filings, extracts financials with XBRL plus LLM fallback, surfaces line-item provenance, and runs industry-aware valuation models with Monte Carlo, sensitivity analysis, and trading comps.
+Valuate is a portfolio prototype for reviewing extracted financials and exploring valuations under selected assumptions. Implementation was AI-assisted; the [case study](https://kristenmartino.ai/work/valuate) describes the product framing, financial requirements, validation work, and limits.
 
-### **▶ [Live app — valuate.kristenmartino.ai](https://valuate.kristenmartino.ai)**  ·  [Case study](https://kristenmartino.ai/work/valuate)
-
-| | |
+| Resource | Link |
 |---|---|
-| **Live app** | https://valuate.kristenmartino.ai |
-| **Case study** | https://kristenmartino.ai/work/valuate |
-| **Frontend** | [kristenmartino/valuate-web](https://github.com/kristenmartino/valuate-web) — Next.js 16, deployed on Vercel |
-| **Backend** | [kristenmartino/valuate-api](https://github.com/kristenmartino/valuate-api) — FastAPI + LangGraph, deployed on Railway |
-| **Recent hardening** | [valuate-api#6](https://github.com/kristenmartino/valuate-api/pull/6) (industry-aware overrides + FCFF valuation tests) · [valuate-web#1](https://github.com/kristenmartino/valuate-web/pull/1) (valuation request-ordering guard) |
+| Live app | [valuate.kristenmartino.ai](https://valuate.kristenmartino.ai) |
+| Case study | [Valuate](https://kristenmartino.ai/work/valuate) |
+| Frontend | [valuate-web](https://github.com/kristenmartino/valuate-web) — Next.js on Vercel |
+| Backend | [valuate-api](https://github.com/kristenmartino/valuate-api) — FastAPI and LangGraph on Railway |
 
-## What it does
+## Extraction and review
 
-Pick one of 18 curated tickers (or search any SEC filer), and Valuate:
+Choose one of 18 sample tickers or enter a US ticker with a SEC 10-K. The app uses a saved company record when available. Uncached companies require filing retrieval and extraction, which can fail when required values remain missing. Saved records do not establish that the filing is current.
 
-1. **Ingests** the company's latest 10-K from SEC EDGAR.
-2. **Extracts** the financial line items two ways — structured XBRL company-facts first (Track A), then a Claude fallback for anything XBRL left blank (Track B) — and shows the **source, confidence, and XBRL tag for every number**.
-3. Lets a reviewer **correct any flagged value** (human-in-the-loop override).
-4. Runs an **industry-aware valuation** — standard FCFF DCF, bank dividend-discount, insurer justified price-to-book, REIT FFO-multiple, or energy reserve-life — with a **10,000-iteration Monte Carlo**, a **sensitivity grid**, and **trading comps** including a DCF-implied-multiples cross-check.
+SEC XBRL company facts provide the first extraction path. Claude fills gaps from filing text; supported calculations supply some remaining fields. Line items identify SEC XBRL, AI extraction, calculation, or user correction as their source. Expand source details for an XBRL concept, AI-provided excerpt, or calculation explanation where available. XBRL tags do not apply to every source, and excerpts require manual checking.
 
-## Why it's interesting
+Automated checks flag extraction scores below 0.80 and balance-sheet discrepancies above 0.5%. Scores are heuristics, not calibrated probabilities of correctness. No flags does not mean a person verified the figures. Reviewers can replace flagged values, choose a specific line for a balance-sheet reconciliation, and optionally add an excerpt. Checks run again after saving. Corrections retain the current value and source label, without reviewer identity or chronological edit history.
 
-- **Cell-level provenance.** Every extracted figure carries where it came from and how confident the system is — the extraction is auditable, not a black box.
-- **Five industry-specific valuation models**, each implementing the textbook closed form, dispatched automatically by SIC code.
-- **Valuation math validated** through live-site QA, deterministic unit tests, and adversarial code review — the standard FCFF model is hand-checked against live outputs (FCFF buildup, terminal value, EV→equity bridge, per-share fair value), and the industry models are tested against closed-form formulas.
-- **Production engineering** — same-origin proxy (the auth token never reaches the browser), structured request logging with correlation IDs, Sentry, a `/version` endpoint exposing commit SHA + prompt hash, and Postgres-backed persistence.
+## Valuation models
 
-## Scope & honesty
+| Category | Simplified model |
+|---|---|
+| Standard | Five-year FCFF DCF with terminal growth |
+| Bank | Gordon dividend discount |
+| Insurer | Justified price-to-book |
+| REIT | Gordon growth using approximate FFO: net income plus D&A |
+| Energy | Fixed ten-year FCFF projection without terminal value |
 
-Valuate is a portfolio-grade product prototype, not production investment software. Extraction is validated on a sample of filers, not exhaustively across all SEC registrants; the highest-confidence experience is the curated universe and the five explicitly modeled industries. Companies outside those industries fall back to the standard FCFF model, which may not be appropriate for them. Nothing here is investment advice.
+Energy growth changes projected revenue. The model does not estimate company-specific reserve life, production volumes, or commodity prices. The REIT calculations are simplified estimates, not company-reported FFO/AFFO. Unclassified companies fall back to standard DCF, which may not fit their business.
 
-## Architecture at a glance
+Monte Carlo output is a distribution under sampled assumptions, not a calibrated stock-price forecast. The chart defaults to values between the 10th and 90th percentiles, discloses the counts outside that window, and offers the full range. Summary statistics use all completed simulations. Sensitivity grids and DCF-implied multiples appear for standard and energy models. Bank, insurer, and REIT comps tables show market context without a model-implied row.
 
-```
-Browser ─▶ valuate-web  (Next.js 16 · Vercel)
-              │  same-origin /api/* rewrite — auth token injected server-side
-              ▼
-           valuate-api  (FastAPI + LangGraph · Railway)
-              │  ingest ─▶ XBRL (Track A) ─▶ Claude (Track B) ─▶ validate
-              ▼
-           SEC EDGAR   +   Anthropic Claude
-```
+## Evidence and storage limits
 
-Each repo's README is the working reference for its code; the [case study](https://kristenmartino.ai/work/valuate) has the full design narrative.
+The [recorded extraction baseline](https://github.com/kristenmartino/valuate-api#extraction-eval-baseline), last refreshed May 30, 2026, reports 39/39 XBRL fields and 3/4 Claude fields within ±0.5% of pinned reference values. The combined 42/43 result spans 11 filers. The AI sample is small; this historical baseline does not establish general extraction accuracy. Deterministic tests cover specific valuation, correction, and chart-data behaviors, rather than every filer or model assumption.
+
+Company records use Postgres when `DATABASE_URL` is configured; otherwise they use a process-local cache that is lost on restart. The frontend proxy keeps its configured backend credential server-side. Filing freshness, broader evaluation, and correction history need further work before a production research workflow.
