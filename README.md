@@ -19,6 +19,8 @@ Automated checks flag extraction scores below 0.80 and balance-sheet discrepanci
 
 Balance-sheet reconciliation keeps parent shareholders' equity and noncontrolling interests separate, adds them when required, and avoids double-counting equity already tagged as consolidated. Prologis's missing component can be backfilled from the same annual filing while preserving its existing amounts, correction notes, and valuation. Unknown equity coverage or unavailable source facts still require review.
 
+CRM's statement mapping uses noncurrent debt separately from current maturities, total cash-flow D&A rather than a fixed-asset component, and an explicit combined payables/accruals label. A targeted filing-backed repair updates older machine-extracted records while preserving user-corrected values and supporting notes. These corrections affect valuation inputs; they do not certify every extracted field.
+
 ## Valuation models
 
 | Category | Simplified model |
