@@ -21,6 +21,8 @@ Balance-sheet reconciliation keeps parent shareholders' equity and noncontrollin
 
 CRM's statement mapping uses noncurrent debt separately from current maturities, total cash-flow D&A rather than a fixed-asset component, and an explicit combined payables/accruals label. A targeted filing-backed repair updates older machine-extracted records while preserving user-corrected values and supporting notes. These corrections affect valuation inputs; they do not certify every extracted field.
 
+CRM's revenue breakdown uses five tagged subscription/support offerings plus professional services and other. The categories reconcile to total revenue without adding the subscription subtotal again. The panel calls these revenue categories, rather than separate operating segments, and the consolidated valuation is unchanged.
+
 ## Valuation models
 
 | Category | Simplified model |
