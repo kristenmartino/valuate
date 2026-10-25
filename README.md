@@ -39,6 +39,8 @@ Statement labels distinguish source-specific investment and policy-liability com
 
 Energy growth changes projected revenue. The model does not estimate company-specific reserve life, production volumes, or commodity prices. The REIT calculations are simplified estimates, not company-reported FFO/AFFO. Unclassified companies fall back to standard DCF, which may not fit their business.
 
+Assumption controls include the starting values even when they fall outside the usual slider ranges, as TXN's 22.58% capex/revenue assumption does. **Restore starting assumptions** returns all inputs to the full-precision values loaded when the workspace opened and recalculates the scenario. It changes scenario inputs without replacing saved financial figures.
+
 Monte Carlo output is a distribution under sampled assumptions, not a calibrated stock-price forecast. The chart defaults to values between the 10th and 90th percentiles, discloses the counts outside that window, and offers the full range. Summary statistics use all completed simulations. Sensitivity grids and DCF-implied multiples appear for standard and energy models. Bank, insurer, and REIT comps tables show market context without a model-implied row.
 
 ## Evidence and storage limits
