@@ -23,6 +23,8 @@ CRM's statement mapping uses noncurrent debt separately from current maturities,
 
 CRM's revenue breakdown uses five tagged subscription/support offerings plus professional services and other. The categories reconcile to total revenue without adding the subscription subtotal again. The panel calls these revenue categories, rather than separate operating segments, and the consolidated valuation is unchanged.
 
+CSCO's debt mapping uses noncurrent debt separately from short-term debt, which already includes current maturities. A filing-backed repair removes the double-count from older machine-extracted records while preserving the reviewed SG&A amount and full source note. The change affects both net debt and default WACC; it does not certify every extracted figure.
+
 ## Valuation models
 
 | Category | Simplified model |
