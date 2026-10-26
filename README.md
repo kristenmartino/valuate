@@ -35,6 +35,8 @@ INTU uses the sum of filed depreciation and the full cash-flow amortization adju
 
 MSFT's D&A mapping adds filed depreciation and intangible amortization ($39.0B for FY2026), rather than treating depreciation alone as D&A or substituting the cash-flow row that includes other adjustments. Source details identify the calculated expense sum and annual filing. Its debt slots separate $9.227B current maturities from $31.067B noncurrent debt, reconciling to $40.294B total. The paired split preserves aggregate debt and WACC; the complete historical D&A series changes the D&A ratio and valuation. Saved repair is atomic across affected history, preserves reviewer corrections and other fields, and blocks valuation on unresolved coverage. These checks do not approve unrelated fields or expand the historical extraction evaluation.
 
+GOOGL uses carrying-value debt split into current maturities plus commercial paper and noncurrent debt. FY2025 notes reconcile to $48.543B ($1.996B current + $46.547B noncurrent), rather than the $49.085B face amount. Its FY2022 debt history includes finance leases and is labeled separately from later notes-only coverage. The $21.136B FY2025 add-back remains a PPE-depreciation proxy: statement, assumption and projection labels disclose that full amortization coverage is unverified. No unverified amortization is added, and DCF-implied EV/EBITDA is unavailable on this basis. Matching annual facts and atomic saved repair preserve reviewer corrections; these checks do not approve other fields or expand the historical baseline.
+
 ## Valuation models
 
 | Category | Simplified model |
