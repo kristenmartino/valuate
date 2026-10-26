@@ -25,6 +25,8 @@ CRM's revenue breakdown uses five tagged subscription/support offerings plus pro
 
 CSCO's debt mapping uses noncurrent debt separately from short-term debt, which already includes current maturities. A filing-backed repair removes the double-count from older machine-extracted records while preserving the reviewed SG&A amount and full source note. The change affects both net debt and default WACC; it does not certify every extracted figure.
 
+CSCO's model add-back uses its filed annual depreciation, amortization and other cash-flow adjustment, with that combined scope labeled in the statements, assumption ratio and projection. It is a proxy rather than pure D&A; the generic PPE-only figure is incomplete. A tagged five-year series supplies the historical ratio. The targeted repair changes incomplete machine-extracted D&A inputs while preserving corrected debt and reviewed SG&A. Missing or conflicting filing facts are not replaced with guesses.
+
 ## Valuation models
 
 | Category | Simplified model |
