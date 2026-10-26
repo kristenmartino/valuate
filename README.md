@@ -29,6 +29,8 @@ CSCO's model add-back uses its filed annual depreciation, amortization and other
 
 AAPL also uses filed noncurrent term debt separately from short-term debt, which includes current maturities and commercial paper. Its targeted repair removes the duplicate current portion from older machine-extracted long-term debt fields while preserving other amounts and review notes. Corrected debt feeds the net-debt bridge and default WACC calculation; failed source checks retain the saved values and warning. This is specific coverage work, not a certification of every extracted figure.
 
+IBM uses a calculated EBIT proxy when its standard operating-income subtotal is unavailable: annual GAAP pre-tax income from continuing operations plus separately reported interest. The workspace labels this scope throughout, explains that other income/expense and financing costs remain included, and keeps the proxy flagged for review. It is not IBM's operating (non-GAAP) earnings or a manually approved figure; missing tagged operands still fail explicitly.
+
 ## Valuation models
 
 | Category | Simplified model |
