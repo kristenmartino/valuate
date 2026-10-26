@@ -27,6 +27,8 @@ CSCO's debt mapping uses noncurrent debt separately from short-term debt, which 
 
 CSCO's model add-back uses its filed annual depreciation, amortization and other cash-flow adjustment, with that combined scope labeled in the statements, assumption ratio and projection. It is a proxy rather than pure D&A; the generic PPE-only figure is incomplete. A tagged five-year series supplies the historical ratio. The targeted repair changes incomplete machine-extracted D&A inputs while preserving corrected debt and reviewed SG&A. Missing or conflicting filing facts are not replaced with guesses.
 
+AAPL also uses filed noncurrent term debt separately from short-term debt, which includes current maturities and commercial paper. Its targeted repair removes the duplicate current portion from older machine-extracted long-term debt fields while preserving other amounts and review notes. Corrected debt feeds the net-debt bridge and default WACC calculation; failed source checks retain the saved values and warning. This is specific coverage work, not a certification of every extracted figure.
+
 ## Valuation models
 
 | Category | Simplified model |
