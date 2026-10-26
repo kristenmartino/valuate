@@ -31,6 +31,8 @@ AAPL also uses filed noncurrent term debt separately from short-term debt, which
 
 IBM uses a calculated EBIT proxy when its standard operating-income subtotal is unavailable: annual GAAP pre-tax income from continuing operations plus separately reported interest. The workspace labels this scope throughout, explains that other income/expense and financing costs remain included, and keeps the proxy flagged for review. It is not IBM's operating (non-GAAP) earnings or a manually approved figure. Matching annual inputs also include current borrowings and both cash-flow depreciation/amortization components. Missing required components fail explicitly. The model note discloses that capex covers PP&E only and excludes separately reported software investment.
 
+INTU uses the sum of filed depreciation and the full cash-flow amortization adjustment ($846M for FY2026), with complete annual history for the D&A ratio. Its noncurrent debt ($6.420B) excludes the $1.249B current portion already stored separately. Exact source details identify the operands and annual filing. The targeted repair preserves reviewer corrections; missing or conflicting coverage keeps the saved record and warning but blocks valuation until repaired. The model note retains the PP&E-only capex scope and exclusion of separately reported capitalized software. These fixes do not mark other INTU inputs manually reviewed or expand the historical evaluation.
+
 ## Valuation models
 
 | Category | Simplified model |
