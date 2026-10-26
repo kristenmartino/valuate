@@ -33,6 +33,8 @@ IBM uses a calculated EBIT proxy when its standard operating-income subtotal is 
 
 INTU uses the sum of filed depreciation and the full cash-flow amortization adjustment ($846M for FY2026), with complete annual history for the D&A ratio. Its noncurrent debt ($6.420B) excludes the $1.249B current portion already stored separately. Exact source details identify the operands and annual filing. The targeted repair preserves reviewer corrections; missing or conflicting coverage keeps the saved record and warning but blocks valuation until repaired. The model note retains the PP&E-only capex scope and exclusion of separately reported capitalized software. These fixes do not mark other INTU inputs manually reviewed or expand the historical evaluation.
 
+MSFT's D&A mapping adds filed depreciation and intangible amortization ($39.0B for FY2026), rather than treating depreciation alone as D&A or substituting the cash-flow row that includes other adjustments. Source details identify the calculated expense sum and annual filing. Its debt slots separate $9.227B current maturities from $31.067B noncurrent debt, reconciling to $40.294B total. The paired split preserves aggregate debt and WACC; the complete historical D&A series changes the D&A ratio and valuation. Saved repair is atomic across affected history, preserves reviewer corrections and other fields, and blocks valuation on unresolved coverage. These checks do not approve unrelated fields or expand the historical extraction evaluation.
+
 ## Valuation models
 
 | Category | Simplified model |
